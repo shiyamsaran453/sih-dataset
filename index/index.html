@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>NOTES</h1>
+        <input type="text" placeholder="HEADING" max="10" id="head">
+        <input type="text" placeholder="content" id="con">
+        <button onclick="add()">Submit</button>
+    </div>
+    <div id="main">
+        <ul id="content">
+        </ul>
+    </div>
+    
+    <script>
+        function add() {
+            const head = document.getElementById('head').value;
+            const content = document.getElementById('con').value;
+            const ul = document.getElementById('content');
+
+            // Create span for heading
+            var y = document.createElement('span');
+            y.innerText = head;
+
+            // Create li for content
+            var x = document.createElement('li');
+            x.innerText = content;
+
+            // Create edit button
+            var button = document.createElement('button');
+            button.textContent = "Edit";
+            button.setAttribute('id', 'butt');
+
+            // Append elements to ul
+            ul.appendChild(y);
+            ul.appendChild(x);
+            ul.appendChild(button);
+
+            // Add event listener for edit button
+            button.addEventListener('click', function() {
+                document.getElementById('con').value = x.innerText;
+            });
+
+            // Create remove button
+            var removeButton = document.createElement('button');
+            removeButton.textContent = "Remove";
+            removeButton.setAttribute('id', 'removeButt');
+
+            // Append remove button to ul
+            ul.appendChild(removeButton);
+
+            // Add event listener for remove button
+            removeButton.addEventListener('click', function() {
+                ul.removeChild(y); // Remove heading span
+                ul.removeChild(x); // Remove content li
+                ul.removeChild(button); // Remove edit button
+                ul.removeChild(removeButton); // Remove remove button
+            });
+        }
+    </script>
+</body>
+</html>
